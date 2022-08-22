@@ -1,6 +1,6 @@
-# CodeIgniter Project Starter
+# Assets Management Dashboard
 
-**ci-starter by Ale Mohamad**
+**youmesushi**
 
 ## About the project
 
