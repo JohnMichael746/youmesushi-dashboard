@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # CodeIgniter 4 Development
 
 [![Build Status](https://github.com/codeigniter4/CodeIgniter4/workflows/PHPUnit/badge.svg)](https://github.com/codeigniter4/CodeIgniter4/actions?query=workflow%3A%22PHPUnit%22)
@@ -63,7 +62,6 @@ someone else may have encountered the same thing.
 Before raising a new GitHub issue, please check that your bug hasn't already
 been reported or fixed.
 
-<<<<<<< HEAD
 We use pull requests (PRs) for CONTRIBUTIONS to the repository.
 We are looking for contributions that address one of the reported bugs or
 approved work packages.
