@@ -289,7 +289,7 @@ code {
   background-color: rgba(0, 0, 0, 0.3);
 }
 .vertical-menu-icon .nav-pills .logobar {
-  margin-bottom: 200px;
+  margin-bottom: 0px;
 }
 
 .menu-title {
@@ -9327,7 +9327,7 @@ table.focus-on tfoot tr.focused td {
   }
 
   .vertical-menu-icon .nav-pills .logobar {
-    margin-bottom: 120px;
+    margin-bottom: 0px;
   }
 
   .rightbar {
