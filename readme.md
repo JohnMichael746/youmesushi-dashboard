@@ -1,151 +1,102 @@
-# CodeIgniter Project Starter
+# CodeIgniter 4 Development
 
-**ci-starter by Ale Mohamad**
+[![Build Status](https://github.com/codeigniter4/CodeIgniter4/workflows/PHPUnit/badge.svg)](https://github.com/codeigniter4/CodeIgniter4/actions?query=workflow%3A%22PHPUnit%22)
+[![Coverage Status](https://coveralls.io/repos/github/codeigniter4/CodeIgniter4/badge.svg?branch=develop)](https://coveralls.io/github/codeigniter4/CodeIgniter4?branch=develop)
+[![Downloads](https://poser.pugx.org/codeigniter4/framework/downloads)](https://packagist.org/packages/codeigniter4/framework)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/codeigniter4/CodeIgniter4)](https://packagist.org/packages/codeigniter4/framework)
+[![GitHub stars](https://img.shields.io/github/stars/codeigniter4/CodeIgniter4)](https://packagist.org/packages/codeigniter4/framework)
+[![GitHub license](https://img.shields.io/github/license/codeigniter4/CodeIgniter4)](https://github.com/codeigniter4/CodeIgniter4/blob/develop/LICENSE)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/codeigniter4/CodeIgniter4/pulls)
+<br>
 
-## About the project
+## What is CodeIgniter?
 
-This is a custom *project starter* curated by myself (Ale Mohamad) for myself.  
-I do not expect that this project will be useful for everyone, so leave it to your decision on using it or not. If you like this project, feel free to use it and please tell me what you think.
+CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
+More information can be found at the [official site](http://codeigniter.com).
 
-## Requirements
+This repository holds the source code for CodeIgniter 4 only.
+Version 4 is a complete rewrite to bring the quality and the code into a more modern version,
+while still keeping as many of the things intact that has made people love the framework over the years.
 
-This project needs a LAMP setup to have optimal performance.  
-Also the server must have at least PHP 5.3 or higher, and must have mod_rewrite enabled.
+More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
 
-## Basic configuration
+### Documentation
 
-### /application/config/config.php
+The [User Guide](https://codeigniter4.github.io/userguide/) is the primary documentation for CodeIgniter 4.
 
-[Generate an encryption key.](https://www.random.org/passwords/?num=1&len=24&format=html&rnd=new)
+The current **in-progress** User Guide can be found [here](https://codeigniter4.github.io/CodeIgniter4/).
+As with the rest of the framework, it is a work in progress, and will see changes over time to structure, explanations, etc.
 
-```php
-$config['encryption_key'] = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
-```
+You might also be interested in the [API documentation](https://codeigniter4.github.io/api/) for the framework components.
 
-Configure the session settings for the project.
+## Important Change with index.php
 
-```php
-$config['sess_cookie_name']		= 'project_session'; // use your project codename
-$config['sess_expiration']		= 7200;
-$config['sess_expire_on_close']	= TRUE; // when the user closes the window it expires
-$config['sess_encrypt_cookie']	= FALSE;
-$config['sess_use_database']	= TRUE; // set to TRUE so you can use the DB
-$config['sess_table_name']		= 'sessions'; // table name for sessions management
-$config['sess_match_ip']		= FALSE; // if TRUE it can block some users in the same network
-$config['sess_match_useragent']	= TRUE;
-$config['sess_time_to_update']	= 300;
-```
+index.php is no longer in the root of the project! It has been moved inside the *public* folder,
+for better security and separation of components.
 
-### /application/config/database.php
+This means that you should configure your web server to "point" to your project's *public* folder, and
+not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
+framework are exposed.
 
-Set up the database information.
+**Please** read the user guide for a better explanation of how CI4 works!
 
-```php
-$db['default']['hostname'] = 'localhost';  
-$db['default']['username'] = 'username';  
-$db['default']['password'] = 'password';  
-$db['default']['database'] = 'database';  
-$db['default']['dbdriver'] = 'mysqli';  
-$db['default']['dbprefix'] = 'prefix_';
-```
+## Repository Management
 
-**Note:** If not using a database, you must remove the Database Library from the ```/application/config/autoload.php``` file and turn the ```sess_use_database``` session option to ```FALSE```.
+CodeIgniter is developed completely on a volunteer basis. As such, please give up to 7 days
+for your issues to be reviewed. If you haven't heard from one of the team in that time period,
+feel free to leave a comment on the issue so that it gets brought back to our attention.
 
-### /application/config/constants.php
+We use GitHub issues to track **BUGS** and to track approved **DEVELOPMENT** work packages.
+We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
+FEATURE REQUESTS.
 
-Modify the constants for the Admin.
+If you raise an issue here that pertains to support or a feature request, it will
+be closed! If you are not sure if you have found a bug, raise a thread on the forum first -
+someone else may have encountered the same thing.
 
-```php
-define('ADMIN_PROJECT',       'Project name');
-define('ADMIN_PROJECT_CODE',  'project');
-define('ADMIN_CLIENT',        'Ale Mohamad');
-define('ADMIN_PRIMARY_EMAIL', 'user@server.com');
-define('ADMIN_LANGUAGE',      'en');
-define('ADMIN_MULTIUSER',     FALSE);
-define('ADMIN_CLEAR_CACHE',   FALSE);
-define('ADMIN_DB_BACKUP',     FALSE);
-define('MAINTENANCE_MODE',    FALSE);
-```
+Before raising a new GitHub issue, please check that your bug hasn't already
+been reported or fixed.
 
-### /assets/data/base.sql
+We use pull requests (PRs) for CONTRIBUTIONS to the repository.
+We are looking for contributions that address one of the reported bugs or
+approved work packages.
 
-Run the SQL command to create the settings table. Rename the ```project_settings``` table name for the proper one (it has to be '```<prefix>```_settings').
+Do not use a PR as a form of feature request.
+Unsolicited contributions will only be considered if they fit nicely
+into the framework roadmap.
+Remember that some components that were part of CodeIgniter 3 are being moved
+to optional packages, with their own repository.
 
-```sql
-CREATE TABLE IF NOT EXISTS `project_settings` (
-  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user` VARCHAR(255) DEFAULT NULL,
-  `password` VARCHAR(255) DEFAULT NULL,
-  `name` VARCHAR(255) DEFAULT NULL,
-  `email` VARCHAR(255) DEFAULT NULL,
-  `permissions` text NOT NULL,
-  `theme` varchar(255) DEFAULT 'default',
-  `pagination` int(11) DEFAULT 10,
-  `reset_token` varchar(64) DEFAULT NULL,
-  `visible` tinyint(1) DEFAULT 1,
-  `deleted` tinyint(1) DEFAULT 0,
-  `last_login` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `created_at` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-```
+## Contributing
 
-Do the same with the sessions table. Rename the ```project_sessions``` table name for the proper one (it has to be '```<prefix>```_sessions').
+We **are** accepting contributions from the community! It doesn't matter whether you can code, write documentation, or help find bugs, 
+all contributions are welcome. 
 
-```sql
-CREATE TABLE IF NOT EXISTS  `project_sessions` (
-  `session_id` varchar(40) NOT NULL DEFAULT '0',
-  `ip_address` varchar(45) NOT NULL DEFAULT '0',
-  `user_agent` varchar(120) NOT NULL,
-  `last_activity` int(10) unsigned NOT NULL DEFAULT '0',
-  `user_data` text NOT NULL,
-  PRIMARY KEY (`session_id`),
-  KEY `last_activity_idx` (`last_activity`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-```
+Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/contributing/README.md).
 
-## What will you find in this starter kit?
+CodeIgniter has had thousands on contributions from people since its creation. This project would not be what it is without them. 
 
-* [CodeIgniter v2.1.4](http://ellislab.com/codeigniter) (EllisLab)
-* [MY_Model](https://github.com/jamierumbelow/codeigniter-base-model) (Jamie Rumbelow)
-* [MY_Controller](https://github.com/jamierumbelow/codeigniter-base-controller) (Jamie Rumbelow) *
-* [MY_Output](https://github.com/danmurf/CI-MY_Output) (Dan Murfitt)
-* [Image_moo v1.1.6](https://github.com/Mat-Moo/image_moo) (Matthew Augier)
-* [Basic CodeIgniter Authentication](https://github.com/joelvardy/Basic-CodeIgniter-Authentication) (Joel Vardy)
-* [Formulize](https://github.com/alemohamad/ci-formulize) (Ale Mohamad)
-* [ci-slug](https://github.com/alemohamad/ci-slug) (Ale Mohamad)
-* [ci-csv](https://github.com/alemohamad/ci-csv) (Ale Mohamad)
-* [ci-feed](https://github.com/RoumenDamianoff/ci-feed) (Roumen Damianoff)
-* [ci-sitemap](https://github.com/RoumenDamianoff/ci-sitemap) (Roumen Damianoff)
-* [Google Analytics Api library](https://github.com/chonthu/Codeigniter-Google-Analytics-Class) (Nithin Meppurathu)
-* [Gravatar library](https://github.com/rsmarshall/Codeigniter-Gravatar) (Ryan Marshall)
-* [CodeIgniter Database backup Model](https://github.com/psradich/CI_DatabaseBackup) (psradich)
-* [CodeIgniter Unzip](https://github.com/philsturgeon/codeigniter-unzip) (Phil Sturgeon)
-* [bootstrap-wysihtml5](https://github.com/jhollingworth/bootstrap-wysihtml5/) (James Hollingworth)
-* [tablesorter v2.14.4](https://github.com/Mottie/tablesorter) (Rob G)
-* [Tags Manager v3.0](https://github.com/max-favilli/tagmanager) (Max Favilli)
-* [Spectrum v1.1.1](https://github.com/bgrins/spectrum) (Brian Grinstead)
-* [ms-Dropdown v3.5.2](https://github.com/marghoobsuleman/ms-Dropdown) (Marghoob Suleman)
-* [FileDrop v2](https://github.com/ProgerXP/FileDrop) (Pavel)
-* [Adminer v4.0.3](https://github.com/vrana/adminer/) (Jakub Vrána)
-* [Font Awesome v4.0.3](http://fontawesome.io/) (Fort Awesome)
-* [Bootstrap v3.0.3](http://getbootstrap.com/) (Mark Otto + jacob)
+<a href="https://github.com/codeigniter4/CodeIgniter4/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=codeigniter4/CodeIgniter4" />
+</a>
 
-## About me
+Made with [contrib.rocks](https://contrib.rocks).
 
-You can reach me at [http://alemohamad.com/](http://alemohamad.com/) if you want to work with me or talk about this project.
+## Server Requirements
 
-![Ale Mohamad](http://alemohamad.com/github/logo2012am.png)
+PHP version 7.4 or higher is required, with the following extensions installed:
 
-## License
 
-[Released under the MIT License (MIT)](http://www.opensource.org/licenses/mit-license.html)
+- [intl](http://php.net/manual/en/intl.requirements.php)
+- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+- [mbstring](http://php.net/manual/en/mbstring.installation.php)
 
-Copyright (c) 2014 Ale Mohamad
+Additionally, make sure that the following extensions are enabled in your PHP:
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+- json (enabled by default - don't turn it off)
+- xml (enabled by default - don't turn it off)
+- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+## Running CodeIgniter Tests
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Information on running the CodeIgniter test suite can be found in the [README.md](tests/README.md) file in the tests directory.
