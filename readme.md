@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # CodeIgniter 4 Development
 
 [![Build Status](https://github.com/codeigniter4/CodeIgniter4/workflows/PHPUnit/badge.svg)](https://github.com/codeigniter4/CodeIgniter4/actions?query=workflow%3A%22PHPUnit%22)
@@ -8,6 +9,11 @@
 [![GitHub license](https://img.shields.io/github/license/codeigniter4/CodeIgniter4)](https://github.com/codeigniter4/CodeIgniter4/blob/develop/LICENSE)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/codeigniter4/CodeIgniter4/pulls)
 <br>
+=======
+# Assets Management Dashboard
+
+**youmesushi**
+>>>>>>> 2c89dc8d9fd0621942f7dab3ec97987f3807b7dd
 
 ## What is CodeIgniter?
 
