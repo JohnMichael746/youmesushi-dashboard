@@ -67,7 +67,7 @@ define('ADMIN_DB_BACKUP',     FALSE);
 define('MAINTENANCE_MODE',    FALSE);
 ```
 
-### /assets/data/base.sql
+### /assets/data/base.sql 
 
 Run the SQL command to create the settings table. Rename the ```project_settings``` table name for the proper one (it has to be '```<prefix>```_settings').
 
