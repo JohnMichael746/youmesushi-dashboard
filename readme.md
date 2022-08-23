@@ -63,9 +63,13 @@ someone else may have encountered the same thing.
 Before raising a new GitHub issue, please check that your bug hasn't already
 been reported or fixed.
 
+<<<<<<< HEAD
 We use pull requests (PRs) for CONTRIBUTIONS to the repository.
 We are looking for contributions that address one of the reported bugs or
 approved work packages.
+=======
+### /assets/data/base.sql 
+>>>>>>> 932893a2fff107a75b3f6d64604ed3f3e69f74ca
 
 Do not use a PR as a form of feature request.
 Unsolicited contributions will only be considered if they fit nicely
